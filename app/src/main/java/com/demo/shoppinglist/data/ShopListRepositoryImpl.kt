@@ -33,6 +33,6 @@ object ShopListRepositoryImpl : ShopListRepository {
     }
 
     override fun getShopList(): List<ShopItem> {
-        return shopList.toList() // Чтобы не было возможности изменения shopList из др. мест кода
+        return shopList.toList() // Чтобы не было возможности изменения shopList из др.мест кода
     }
 }
