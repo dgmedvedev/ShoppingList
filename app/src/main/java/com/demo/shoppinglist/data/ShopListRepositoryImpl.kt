@@ -7,7 +7,8 @@ import com.demo.shoppinglist.domain.ShopListRepository
 
 object ShopListRepositoryImpl : ShopListRepository {
 
-    private val shopList = mutableListOf<ShopItem>()
+    // создали отсортированную коллекцию TreeSet, с помощью метода Kotlin
+    private val shopList = sortedSetOf<ShopItem>({ o1, o2 -> o1.id.compareTo(o2.id) })
 
     private val shopListLiveData = MutableLiveData<List<ShopItem>>()
 
