@@ -23,6 +23,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         buttonAddItem = findViewById(R.id.button_add_shop_item)
         setupRecyclerView()
+        launchFragment()
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
         viewModel.shopList.observe(this) {
             shopListAdapter.submitList(it)
@@ -92,5 +93,12 @@ class MainActivity : AppCompatActivity() {
         }
         toastMessage = Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT)
         toastMessage?.show()
+    }
+
+    private fun launchFragment() {
+        val fragment = ShopItemFragment.newInstanceAddItem()
+        supportFragmentManager.beginTransaction()
+            .add(R.id.container_main, fragment)
+            .commit()
     }
 }
