@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.demo.shoppinglist.R
@@ -29,7 +30,10 @@ class ShopItemFragment : Fragment() {
     private var screenMode: String = MODE_UNKNOWN
     private var shopItemId: Int = ShopItem.UNDEFINED_ID
 
+    private var toastMessage: Toast? = null
+
     override fun onAttach(context: Context) {
+        showToast("onAttach")
         super.onAttach(context)
         if (context is OnEditingFinishedListener) {
             onEditingFinishedListener = context
@@ -39,6 +43,7 @@ class ShopItemFragment : Fragment() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        showToast("onCreate")
         super.onCreate(savedInstanceState)
         parseParams()
     }
@@ -48,16 +53,53 @@ class ShopItemFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        showToast("onCreateView")
         return inflater.inflate(R.layout.fragment_shop_item, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        showToast("onViewCreated")
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this)[ShopItemViewModel::class.java]
         initViews(view)
         addTextChangeListeners()
         launchRightMode()
         observeViewModel()
+    }
+
+    override fun onStart() {
+        showToast("onStart")
+        super.onStart()
+    }
+
+    override fun onResume() {
+        showToast("onResume")
+        super.onResume()
+    }
+
+    override fun onPause() {
+        showToast("onPause")
+        super.onPause()
+    }
+
+    override fun onStop() {
+        showToast("onStop")
+        super.onStop()
+    }
+
+    override fun onDestroyView() {
+        showToast("onDestroyView")
+        super.onDestroyView()
+    }
+
+    override fun onDestroy() {
+        showToast("onDestroy")
+        super.onDestroy()
+    }
+
+    override fun onDetach() {
+        showToast("onDetach")
+        super.onDetach()
     }
 
     private fun observeViewModel() {
@@ -151,6 +193,19 @@ class ShopItemFragment : Fragment() {
 
     interface OnEditingFinishedListener {
         fun onEditingFinished()
+    }
+
+//    private fun showToast(message: String) {
+//        if (toastMessage != null) {
+//            toastMessage?.cancel()
+//        }
+//        toastMessage = Toast.makeText(context, message, Toast.LENGTH_SHORT)
+//        toastMessage?.show()
+//    }
+
+    private fun showToast(message: String) {
+        toastMessage = Toast.makeText(context, message, Toast.LENGTH_SHORT)
+        toastMessage?.show()
     }
 
     companion object {
