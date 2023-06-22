@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity(), ShopItemFragment.OnEditingFinishedList
     }
 
     override fun onEditingFinished() {
-        Toast.makeText(this@MainActivity, "Sucess", Toast.LENGTH_SHORT).show()
+        showToast("Success")
         supportFragmentManager.popBackStack()
     }
 
