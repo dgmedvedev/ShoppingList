@@ -43,7 +43,6 @@ class ShopItemFragment : Fragment() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        showToast("onCreate")
         super.onCreate(savedInstanceState)
         parseParams()
     }
@@ -53,12 +52,10 @@ class ShopItemFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        showToast("onCreateView")
         return inflater.inflate(R.layout.fragment_shop_item, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        showToast("onViewCreated")
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this)[ShopItemViewModel::class.java]
         initViews(view)
@@ -68,37 +65,30 @@ class ShopItemFragment : Fragment() {
     }
 
     override fun onStart() {
-        showToast("onStart")
         super.onStart()
     }
 
     override fun onResume() {
-        showToast("onResume")
         super.onResume()
     }
 
     override fun onPause() {
-        showToast("onPause")
         super.onPause()
     }
 
     override fun onStop() {
-        showToast("onStop")
         super.onStop()
     }
 
     override fun onDestroyView() {
-        showToast("onDestroyView")
         super.onDestroyView()
     }
 
     override fun onDestroy() {
-        showToast("onDestroy")
         super.onDestroy()
     }
 
     override fun onDetach() {
-        showToast("onDetach")
         super.onDetach()
     }
 
