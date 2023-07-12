@@ -22,6 +22,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="4dp"
+            app:errorInputName="@{viewModel.errorInputName}"
             app:layout_constraintBottom_toTopOf="@id/til_count"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -34,7 +35,8 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/name_hint"
                 android:inputType="textCapWords"
-                app:errorInputName="@{viewModel}" />
+                android:text="@{viewModel.shopItem.name}"
+                app:resetErrorInputName="@{viewModel}" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -44,6 +46,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="4dp"
             android:layout_marginEnd="8dp"
+            app:errorInputCount="@{viewModel.errorInputCount}"
             app:layout_constraintBottom_toTopOf="@+id/save_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -55,7 +58,8 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/count_hint"
                 android:inputType="number"
-                app:errorInputCount="@{viewModel}" />
+                android:text="@{String.valueOf(viewModel.shopItem.count)}"
+                app:resetErrorInputCount="@{viewModel}" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button

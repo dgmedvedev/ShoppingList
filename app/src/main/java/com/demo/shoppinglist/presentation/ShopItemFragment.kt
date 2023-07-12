@@ -2,20 +2,14 @@ package com.demo.shoppinglist.presentation
 
 import android.content.Context
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.demo.shoppinglist.R
 import com.demo.shoppinglist.databinding.FragmentShopItemBinding
 import com.demo.shoppinglist.domain.ShopItem
-import com.google.android.material.textfield.TextInputEditText
-import com.google.android.material.textfield.TextInputLayout
 
 class ShopItemFragment : Fragment() {
 
@@ -26,17 +20,8 @@ class ShopItemFragment : Fragment() {
     private lateinit var viewModel: ShopItemViewModel
     private lateinit var onEditingFinishedListener: OnEditingFinishedListener
 
-    // private lateinit var tilName: TextInputLayout
-    // private lateinit var tilCount: TextInputLayout
-
-    // private lateinit var etName: TextInputEditText
-    // private lateinit var etCount: TextInputEditText
-    // private lateinit var saveButton: Button
-
     private var screenMode: String = MODE_UNKNOWN
     private var shopItemId: Int = ShopItem.UNDEFINED_ID
-
-    private var toastMessage: Toast? = null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -66,8 +51,7 @@ class ShopItemFragment : Fragment() {
         viewModel = ViewModelProvider(this)[ShopItemViewModel::class.java]
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
-        // initViews(view)
-        // addTextChangeListeners()
+//        addTextChangeListeners()
         launchRightMode()
         observeViewModel()
     }
@@ -78,22 +62,6 @@ class ShopItemFragment : Fragment() {
     }
 
     private fun observeViewModel() {
-        viewModel.errorInputCount.observe(viewLifecycleOwner) {
-            val message = if (it) {
-                getString(R.string.error_input_count)
-            } else {
-                null
-            }
-            binding.tilCount.error = message
-        }
-        viewModel.errorInputName.observe(viewLifecycleOwner) {
-            val message = if (it) {
-                getString(R.string.error_input_name)
-            } else {
-                null
-            }
-            binding.tilName.error = message
-        }
         viewModel.shouldCloseScreen.observe(viewLifecycleOwner) {
             onEditingFinishedListener.onEditingFinished()
         }
@@ -104,6 +72,7 @@ class ShopItemFragment : Fragment() {
             MODE_ADD -> launchAddMode()
             MODE_EDIT -> launchEditMode()
         }
+        Toast.makeText(context, screenMode, Toast.LENGTH_SHORT).show()
     }
 
 //    private fun addTextChangeListeners() {
@@ -125,16 +94,15 @@ class ShopItemFragment : Fragment() {
 
     private fun launchAddMode() {
         binding.saveButton.setOnClickListener {
-            viewModel.addShopItem(binding.etName.text?.toString(), binding.etCount.text?.toString())
+            viewModel.addShopItem(
+                binding.etName.text?.toString(),
+                binding.etCount.text?.toString()
+            )
         }
     }
 
     private fun launchEditMode() {
         viewModel.getShopItem(shopItemId)
-        viewModel.shopItem.observe(viewLifecycleOwner) {
-            binding.etName.setText(it.name)
-            binding.etCount.setText(it.count.toString())
-        }
         binding.saveButton.setOnClickListener {
             viewModel.editShopItem(
                 binding.etName.text?.toString(),
@@ -161,29 +129,8 @@ class ShopItemFragment : Fragment() {
         }
     }
 
-    // private fun initViews(view: View) {
-    // tilName = view.findViewById(R.id.til_name)
-    // tilCount = view.findViewById(R.id.til_count)
-    // etName = view.findViewById(R.id.et_name)
-    // etCount = view.findViewById(R.id.et_count)
-    // saveButton = view.findViewById(R.id.save_button)
-    // }
-
     interface OnEditingFinishedListener {
         fun onEditingFinished()
-    }
-
-//    private fun showToast(message: String) {
-//        if (toastMessage != null) {
-//            toastMessage?.cancel()
-//        }
-//        toastMessage = Toast.makeText(context, message, Toast.LENGTH_SHORT)
-//        toastMessage?.show()
-//    }
-
-    private fun showToast(message: String) {
-        toastMessage = Toast.makeText(context, message, Toast.LENGTH_SHORT)
-        toastMessage?.show()
     }
 
     companion object {
