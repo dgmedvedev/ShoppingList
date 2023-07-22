@@ -34,4 +34,11 @@ class ShopListRepositoryImpl(application: Application) : ShopListRepository {
                 value = mapper.mapListDbModelToListEntity(it)
             }
         }
+
+    // Transformations устарела
+//    override fun getShopList(): LiveData<List<ShopItem>> = Transformations.map(
+//        shopListDao.getShopList()
+//    ) {
+//        mapper.mapListDbModelToListEntity(it)
+//    }
 }
