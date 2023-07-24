@@ -1,16 +1,17 @@
 package com.demo.shoppinglist.presentation
 
-import androidx.lifecycle.ViewModel
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import com.demo.shoppinglist.data.ShopListRepositoryImpl
-import com.demo.shoppinglist.domain.GetShopListUseCase
 import com.demo.shoppinglist.domain.DeleteShopItemUseCase
 import com.demo.shoppinglist.domain.EditShopItemUseCase
+import com.demo.shoppinglist.domain.GetShopListUseCase
 import com.demo.shoppinglist.domain.ShopItem
 
-class MainViewModel : ViewModel() {
+class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     private val repository =
-        ShopListRepositoryImpl // изучить инъекцию зависимостей  сделать правильно
+        ShopListRepositoryImpl(application) // изучить инъекцию зависимостей  сделать правильно
 
     private val getShopListUseCase = GetShopListUseCase(repository)
     private val deleteShopItemUseCase = DeleteShopItemUseCase(repository)
