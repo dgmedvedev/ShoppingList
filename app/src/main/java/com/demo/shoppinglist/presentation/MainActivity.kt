@@ -1,5 +1,6 @@
 package com.demo.shoppinglist.presentation
 
+import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -36,6 +37,13 @@ class MainActivity : AppCompatActivity(), ShopItemFragment.OnEditingFinishedList
                 startActivity(intent)
             }
         }
+        contentResolver.query(
+            Uri.parse("content://com.demo.shoppinglist/shop_items"),
+            null,
+            null,
+            null,
+            null
+        )
     }
 
     override fun onEditingFinished() {
