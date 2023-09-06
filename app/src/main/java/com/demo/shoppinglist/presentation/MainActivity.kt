@@ -38,11 +38,8 @@ class MainActivity : AppCompatActivity(), ShopItemFragment.OnEditingFinishedList
             }
         }
         contentResolver.query(
-            Uri.parse("content://com.demo.shoppinglist/shop_items"),
-            null,
-            null,
-            null,
-            null
+            Uri.parse("content://com.demo.shoppinglist/shop_items/3"),
+            null, null, null, null
         )
     }
 
