@@ -1,9 +1,10 @@
-package com.demo.shoppinglist.presentation
+package com.demo.shoppinglist.presentation.adapters
 
 import android.text.Editable
 import android.text.TextWatcher
 import androidx.databinding.BindingAdapter
 import com.demo.shoppinglist.R
+import com.demo.shoppinglist.presentation.ShopItemViewModel
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 

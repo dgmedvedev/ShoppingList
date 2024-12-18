@@ -1,4 +1,4 @@
-package com.demo.shoppinglist.presentation
+package com.demo.shoppinglist.presentation.adapters
 
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView

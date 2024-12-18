@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.demo.shoppinglist.R
 import com.demo.shoppinglist.databinding.ActivityMainBinding
+import com.demo.shoppinglist.presentation.adapters.ShopListAdapter
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), ShopItemFragment.OnEditingFinishedListener {
@@ -26,7 +27,6 @@ class MainActivity : AppCompatActivity(), ShopItemFragment.OnEditingFinishedList
     private val component by lazy {
         (application as ShopApplication).component
     }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         component.inject(this)
         super.onCreate(savedInstanceState)
